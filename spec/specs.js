@@ -1,3 +1,6 @@
+ beforeEach(function() {
+  Category.all = [];
+});
  describe('Purchase', function() {
    describe('initialize', function() {
     it('should create a new purchase with a description and amount', function() {
@@ -39,6 +42,35 @@ describe('Category', function(){
     it('sets up an empty array called purchases', function() {
       var testCategory = Category.create(Category);
       testCategory.purchases.should.eql([]);
+    });
+  });
+  describe('totalSpent', function() {
+    it('totals the amount spent in a category', function() {
+      var testPurchase = Purchase.create('Pizza', 10);
+      var testCategory = Category.create('Food');
+      var testPurchase2 = Purchase.create('cheeseburger', 15);
+      testPurchase.categorize(testCategory);
+      testPurchase2.categorize(testCategory);
+      testCategory.totalSpent().should.equal(25);
+    });
+  });
+  describe('totalSpentEverywhere', function() {
+    it('totals the amount spent on all purchases', function() {
+      var testPurchase1 = Purchase.create('Salad', 9);
+      var testPurchase2 = Purchase.create('Salad', 5);
+      var testPurchase3 = Purchase.create('Salad', 7);
+      var testPurchase4 = Purchase.create('Salad', 6);
+      
+      var testCategory1 = Category.create('expensiveSalad');
+      var testCategory2 = Category.create('Salad');
+
+      testPurchase1.categorize(testCategory1);
+      testPurchase2.categorize(testCategory1);
+      testPurchase3.categorize(testCategory2);
+      testPurchase4.categorize(testCategory2);
+
+      Category.totalSpentEverywhere().should.equal(27);
+
     });
   });
 });

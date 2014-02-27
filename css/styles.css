@@ -2,12 +2,15 @@ td{
   padding:5px;
   border:1px solid black;
 }
+
 tr:nth-child(odd) { 
   background-color:#eee; 
 }
+
 tr:nth-child(even) {
   background-color:#fff; 
 }
+
 ul{
   list-style: none;
   margin-top:3%;
