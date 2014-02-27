@@ -43,6 +43,7 @@ var Category = {
 }
 
 $(document).ready(function(){
+  
   var currentCategory;
   $('form#new-purchase').submit(function(event) {
    event.preventDefault();
@@ -53,27 +54,18 @@ $(document).ready(function(){
     newPurchase.categorize(currentCategory);
     this.reset();
   });
+
   $('form#newCategory').submit(function(event) {
     event.preventDefault();
     var newCategory = Category.create($('#newCat').val());
-    $('ul#categories').append('<li>' + newCategory.name + '</li>');
-    $('ul#categories li').last().click(function(){
-      $('#categoryToAddTo').text($(this).text() )
-      currentCategory = newCategory;
-      $('#purchaseTable').html($(this).text());
-      $('table#purchases').html('<tr><td>Description</td><td>Amount</td></tr>');
-      currentCategory.purchases.forEach(function(purchase){
-        $('table#purchases').append('<tr><td class="description">' + purchase.dsc 
-                          + '</td><td class="amount">' + purchase.amount + '</td></tr>')
-      });
-    });
     this.reset();
   });
+
  $('form').submit(function() {
    $('table#categoriesTable').html('<tr><td>Categories</td><td>Total Spent</td><td>Percentage</td></tr>');
     console.log(Category.all)
     Category.all.forEach(function(category) {
-      $('table#categoriesTable').append('<tr class='+category.name+'><td>' + category.name 
+      $('table#categoriesTable').append('<tr class='+category.name+'><td class="clickable">' + category.name 
                                       + '</td><td>' + category.totalSpent() 
                                       + '</td><td>' + (category.totalSpent() / Category.totalSpentEverywhere()*100).toPrecision(2) + "%</td><tr>")
         $('tr.'+category.name).on('click',function(){

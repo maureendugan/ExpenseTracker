@@ -8,6 +8,7 @@
     <title>Expense Tracker</title>
   </head>
   <body>
+  
     <div class="container">
       <h1>Expense Organizer</h1>
 
@@ -23,8 +24,12 @@
           </form>
         <ul id="categories">
         </ul>
-        <table id="categoriesTable">
-          <tr><td>Category:</td><td>Total Spent</td><td>Percentage</td></tr>
+        <table  class="table table-bordered" id="categoriesTable">
+            <tr>
+              <td>Category</td>
+              <td>Total</td>
+              <td>Percentage</td>
+            </tr>
         </table>
         </div> <!--1st col-sm-3 Column -->
 
@@ -43,12 +48,14 @@
           </form>
         </div> <!--2nd col-sm-3 Column -->
         <div class="col-sm-3">
-          <h2 id="purchaseTable">Purchases:</h2>
-          <table id='purchases'>
-            <tr>
-              <td>Description</td>
-              <td>Amount</td>
-            </tr>
+          <h2 id="purchaseTable">Purchases</h2>
+          <table class="table table-striped" id='purchases'>
+            <tbody>
+              <tr>
+                <td>Description</td>
+                <td>Amount</td>
+              </tr>
+            </tbody>
            </table>
          </div><!-- purchase table column -->
       </div> <!--row -->
